@@ -1,7 +1,7 @@
-# Initializing Packrat.
+# Initializing Packrat
 packrat::init()
 
-# Tidyverse
+# tidyverse
 library(dplyr)
 library(ggplot2)
 
@@ -19,5 +19,5 @@ library(data.table)
 demo_dt <- as.data.table(demo)
 demo_dt[, cyl := cyl + 1]
 
-# Export the whole thing
+# Export the whole thing into a single tar archive
 packrat::bundle(file = '~/projects/R_pkg_dev/Packrat_HowTo/export.tar.gz', overwrite = TRUE)
