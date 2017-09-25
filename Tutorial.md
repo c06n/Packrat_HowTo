@@ -17,8 +17,8 @@
 # If you are in a hurry<a name="hurry"></a>
 
 [Official site](http://rstudio.github.io/packrat/)  
-[Most common commands](http://rstudio.github.io/packrat/commands.html)
-[Example source file]()
+[Most common commands](http://rstudio.github.io/packrat/commands.html)  
+[Example source file](https://github.com/c06n/Packrat_HowTo/Packrat_HowTo.R)
 
 1. Install Packrat: ```install.packages("packrat")```
 1. If you are on Windows, make sure to have separate paths for [```System Libraries```](#system_libraries) and [```User Libraries```](#user_libraries) ([How To](https://stackoverflow.com/questions/15170399/changing-r-default-library-path-using-libpaths-in-rprofile-site-fails-to-work)).
@@ -43,7 +43,7 @@ One way to do this comprises the following steps:
 1. Documenting the steps of the pre-processing in a script, usually in R, Python or Matlab.
 1. Documenting the code for the analysis together with the results, such as in [R Notebooks](http://rmarkdown.rstudio.com/r_notebooks.html) or [Jupyter](http://jupyter.org/). This is also known as [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming).
 
-One drawback of using programming languages such as R and Python is that for any data processing, a number of packages (in other languages *libraries, modules, toolboxes*) will be used. This is partially due to the fact that scripting in R, Python (with Pandas), Matlab or Julia should not be seen as *traditional software development*. As a matter of fact, many users of statistical software [do not see themselves as software developers](http://www.huber.embl.de/dsc/slides/Packrat-DSC2014.pdf). Rather, these languages should be seen as environments in which certain statistical or data manipulation techniques are implemented. The [R project says](https://www.r-project.org/about.html):
+One drawback of using programming languages such as R and Python is that for any data processing, a number of packages (in other languages *libraries, modules, toolboxes*) will be used. This is partially due to the fact that scripting in R, Python (with Pandas), Matlab or Julia are rather different from *traditional software development*. As a matter of fact, many users of statistical software [do not see themselves as software developers](http://www.huber.embl.de/dsc/slides/Packrat-DSC2014.pdf). Rather, these languages rather act as environments in which certain statistical or data manipulation techniques are implemented. The [R project says](https://www.r-project.org/about.html):
 
 > Many users think of R as a statistics system. We prefer to think of it of an environment within which statistical techniques are implemented. R can be extended (easily) via packages. There are about eight packages supplied with the R distribution and many more are available through the CRAN family of Internet sites covering a very wide range of modern statistics.
 
@@ -51,7 +51,7 @@ Especially in R, packages are updated frequently. This is partially due to R Cor
 
 ## Problems and Solutions<a name="reproducibility_problems"></a>
 
-Coming back to *reproducible analyses*, problems can arise. While it cannot be recommended enough to keep R Core updated, this means that all packages will have to be updated as well. Which in turn means that after some time, old scripts will not work anymore. Of course the general idea of the pre-processing and analysis will still be clear from the script source code, but we cannot be certain anymore that the given input (the raw data) actually still produce the output on which the scientific conclusions are based. It should be noted though that this still would be a much more desirable state than simply having no documented script at all, which usually is the case when relying on SPSS, and always is the case when employing EXCEL.
+Coming back to *reproducible analyses*, problems can arise. While it cannot be recommended enough to keep R Core updated, this means that all packages will have to be updated as well. Which in turn means that after some time, old scripts may not work anymore. Of course the general idea of the pre-processing and analysis will still be clear from the script source code, but we cannot be certain anymore that the given input (the raw data) actually still produce the output on which the scientific conclusions are based. It should be noted though that this still would be a much more desirable state than simply having no documented script at all, which usually is the case when relying on SPSS, and always is the case when employing EXCEL.
 
 So what do? One obvious solution would be to use version control, especially Git. The problem is that R Core and the necessary libraries are outside of the working tree. You could either use [```git --work-tree=/ add /home/some/directory``` or ```git config --global core.worktree /```](https://stackoverflow.com/questions/2383754/git-how-do-you-add-an-external-directory-to-the-repository), or commit 3 repositories (working tree, R Core, User Libraries). But this is a hacky way, error prone, and adds an overhead of work that guarantees no one will use this approach.
 
@@ -71,7 +71,7 @@ What's the core of our problem? **We need a something with all the package versi
 
 A package is essentially a collection of functions which somebody has written at some point, with some very nice add-ons. There is a very, very [offical documentation](https://cran.r-project.org/doc/manuals/R-exts.html) of what all these terms mean. When you start R and want to load a package, R needs to know where to look for it. This is called a ```search path```. It really is a normal path to a dedicated directory on the computer, in which the packages are stored. This directory itself is called ```library```. Sorry for the confusion, because in other programming languages *libraries* are what in R is a *package*. 
 
-* Hint: In RStudio, you can see the directory for any package by hovering with the mouse over the version numer. There is also a clear distinction between the ```User Library``` and the ```System Library``` in the ```Packages``` panel.*
+*Hint: In RStudio, you can see the directory for any package by hovering with the mouse over the version numer. There is also a clear distinction between the ```User Library``` and the ```System Library``` in the ```Packages``` panel.*
 
 ## System Libraries<a name="system_libraries"></a>
 
@@ -86,7 +86,7 @@ You can get the value of ```R_HOME``` from within R [like this](https://stat.eth
 *Note*: ```R_HOME``` is not the same as the ```HOME``` environment variable on Windows. You can get all these values [like this](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Sys.getenv.html): ```Sys.getenv(c("R_HOME", "HOME"))```. This could give you e.g. 
 
     > Sys.getenv(c("R_HOME", "HOME"))
-    R_HOME                          HOME
+                      R_HOME          HOME
     "C:/PROGRA~1/R/R-34~1.1"    "D:\\Home" 
 
 This also means that this library **does not have to be managed**: They already are. Down to the first publicly available R version (1.0.0), you can get all versions (and the system libraries) [here](https://cran.r-project.org/bin/windows/base/old/). Of course it is always possible that in 10 years some version may not be available anymore. Given how wildly R is used, that seems implausible. There is also a large number of CRAN-mirrors. If this is a huge issue of concern, I would recommend to build a self hosted CRAN-mirror.
@@ -113,7 +113,7 @@ In R:
     > Sys.getenv("R_LIBS_USER")  
     [1] "D:\\Home\\R\\Rpackages"  
 
-In the ```cmd.exe```, type ```set R_LIBS_USER```. The output must be your desired path.
+Or in the ```cmd.exe```, type ```set R_LIBS_USER```. The output must be your desired path.
 
 # Using Packrat<a name="using_packrat"></a>
 
@@ -132,7 +132,7 @@ If you are done with your project and want to archive it (or share it), you can 
 For the goal of *reproducible science*, to me it seems best to do the following:
 
 1. Work on your project like usually.
-1. when you're done and want to archive a version, activate Packrat via ```packrat::init()``` or the GUI.
+1. When you're done and want to archive a version, activate Packrat via ```packrat::init()``` or the GUI.
 1. (Include an R Core installer in the project.)
 1. Export the project via ```packrat::bundle()```. 
 
