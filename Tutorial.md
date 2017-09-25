@@ -18,7 +18,7 @@
 
 [Official site](http://rstudio.github.io/packrat/)  
 [Most common commands](http://rstudio.github.io/packrat/commands.html)  
-[Example source file](https://github.com/c06n/Packrat_HowTo/Packrat_HowTo.R)
+[Example source file](Packrat_HowTo.R)
 
 1. Install Packrat: ```install.packages("packrat")```
 1. If you are on Windows, make sure to have separate paths for [```System Libraries```](#system_libraries) and [```User Libraries```](#user_libraries) ([How To](https://stackoverflow.com/questions/15170399/changing-r-default-library-path-using-libpaths-in-rprofile-site-fails-to-work)).
