@@ -20,4 +20,4 @@ demo_dt <- as.data.table(demo)
 demo_dt[, cyl := cyl + 1]
 
 # Export the whole thing into a single tar archive
-packrat::bundle(file = '~/projects/R_pkg_dev/Packrat_HowTo/export.tar.gz', overwrite = TRUE)
+packrat::bundle(file = 'export.tar.gz', overwrite = TRUE)
